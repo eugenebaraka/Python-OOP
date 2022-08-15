@@ -54,7 +54,6 @@ class Item:
 print(Item.is_integer(7.1)) 
 
 
-Class OOP()
 
 
 
