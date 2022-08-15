@@ -1,3 +1,4 @@
+import csv
 
 class Item(): #create a new class
     pay_rate = 0.8 #class attribute for payrate after 20% discount
@@ -22,18 +23,36 @@ class Item(): #create a new class
     def apply_discount(self):
         self.price = self.price * self.pay_rate
 
-    
+
+    # read in data. 
+    # convert this method to a class method by using a decorator
+    @classmethod #to manipulate different structures of data to instantiate objects, e.g. csv, json
+    def instantiate_from_csv(cls): #class object passed as the first argument instead of self
+        with open('items.csv', 'r') as f:
+            reader = csv.DictReader(f)
+            items = list(reader)
+        
+        for item in items:
+            Item(
+                name = item.get('name'),
+                price = float(item.get('price')),
+                quantity= int(item.get('quantity'))
+            )
+
+    @staticmethod #used on something that should not be unique per instance
+    def is_integer(num):
+        if isinstance(num, float):
+            return num.is_integer()
+        elif isinstance(num, int):
+            return True
+        else:
+            False
+
+    def __repr__(self): #represent all our instances
+        return f"Item('{self.name}', {self.price}, {self.quantity})"
+
+print(Item.is_integer(2.0))
+
+#STOPPED VIDEO AT 1:14:49 (inheritance)
 
 
-
-
-
-item1 = Item("Phone", 100, 1)
-item2 = Item("Laptop", 1000, 3)
-item3 = Item("Cable", 10, 5)
-item4 = Item("Mouse", 50, 5)
-item5 = Item("Keyboard", 75, 5)
-
-
-for instance in Item.all:
-    print(instance.quantity)
