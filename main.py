@@ -51,7 +51,10 @@ class Item:
         return f"Item('{self.name}', '{self.price}', '{self.quantity}')"
 
 
-print(Item.is_integer(7.1))
+print(Item.is_integer(7.1)) 
+
+
+Class OOP()
 
 
 
