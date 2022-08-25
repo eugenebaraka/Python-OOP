@@ -31,14 +31,14 @@ class Item(): #create a new class
         with open('items.csv', 'r') as f:
             reader = csv.DictReader(f)
             items = list(reader)
-        
+
         for item in items:
             Item(
                 name = item.get('name'),
                 price = float(item.get('price')),
                 quantity= int(item.get('quantity'))
             )
-
+    
     @staticmethod #used on something that should not be unique per instance
     def is_integer(num):
         if isinstance(num, float):
@@ -51,8 +51,14 @@ class Item(): #create a new class
     def __repr__(self): #represent all our instances
         return f"Item('{self.name}', {self.price}, {self.quantity})"
 
-print(Item.is_integer(2.0))
 
-#STOPPED VIDEO AT 1:14:49 (inheritance)
+class Phone(Item): #Child class that inherits from parent class 
+    pass
+
+phone1 = Item("phone10", 400, 5)
+phone1.broken_phones = 1
+phone2 = Item("phone20", 500, 7)
+phone2.broken_phones = 1
+
 
 
